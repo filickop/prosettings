@@ -2,27 +2,51 @@
 <html lang="en">
 <head>
     <title>PROsettings</title>
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="menu">
-        <a href="players.html" class="menubtn player">Players</a>
-        <a href="index.html"><img  src="images/csgologo.png" alt=""  class="logomenu"></a>
-        <a href="" class="menubtn account active">Account</a>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img  src="images/csgologo.png" alt=""  class="logomenu"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                <a class="nav-link" href="players.html">Players</a>
+                <a class="nav-link active" href="">Account</a>
+            </div>
+        </div>
     </div>
+</nav>
 
-    <div class="content">
-        <form class="login">
-            <label for="username">Username:</label>
-            <input type="text" id="username"> <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password"> <br>
-            <input type="submit" value="Log In">
-        </form>
+<main class="form-signin">
+    <form>
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    </div>
+        <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+</main>
+
+<script src="bootstrap.js"></script>
 </body>
 
 </html>
