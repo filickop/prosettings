@@ -114,9 +114,26 @@ tr:nth-child(even) {
     padding: 15px;
     margin:auto;
 }
-.form-edit-profile {
+.form-profile {
     width: 80%;
     margin:auto;
 }
 
+.red {
+    background-color: #CA260A;
+    border-color: #CA260A;
+}
+.red:hover {
+    background-color: #FD140D;
+    border-color: #FD140D;
+}
+
+.buttons {
+
+    margin: auto;
+}
+.signupbtn {
+    background-color: #0d6efd;;
+    margin-bottom: 5px;
+}
 /*EDIT DATA END*/

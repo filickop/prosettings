@@ -7,8 +7,15 @@ session_start();
 $auth = new Auth();
 $storage = new DBStorage();
 
-if(isset($_POST["username"])) {
+if(isset($_POST["signin"])) {
     if($storage->login($_POST["username"], $_POST["password"])) {
+        Auth::login($_POST["username"]);
+    } else {
+        echo "nemame";
+    }
+}
+if(isset($_POST["signup"])) {
+    if($storage->createUser($_POST["username"],$_POST["firstName"], $_POST["lastName"], $_POST["password"])) {
         Auth::login($_POST["username"]);
     } else {
         echo "nemame";
@@ -17,9 +24,13 @@ if(isset($_POST["username"])) {
 if(isset($_POST["update"])) {
     $storage->updateUser(Auth::getUser(), $_POST["firstName"], $_POST["lastName"], $_POST["team"], $_POST["cpu"], $_POST["gpu"], $_POST["ram"], $_POST["monitor"], $_POST["mouse"], $_POST["keyboard"], $_POST["headset"], $_POST["mousepad"], $_POST["dpi"], $_POST["sensitivity"], $_POST["crosshair"], $_POST["viewmodel"]);
 }
+if(isset($_POST["delete"])) {
+    $storage->deleteUser(Auth::getUser());
+}
 if(isset($_GET['logout']) && $_GET['logout'] == '1') {
     Auth::logout();
 }
+
 
 ?>
 
@@ -45,7 +56,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                 <a class="nav-link" href="players.php">Players</a>
                 <?php  if(Auth::isLogged()) { ?>
                     <a class="nav-link active" href="">Account</a>
-                    <a class="nav-link" href="?logout=1" >Log out</a>
+                    <a class="nav-link" href="index.php?logout=1" >Log out</a>
                 <?php }
                     else { ?>
                         <a class="nav-link active" href="">Log in</a>
@@ -60,32 +71,54 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
 
 <?php
     if(!Auth::isLogged()) { ?>
-        <main class="form-signin">
-            <form method="post" action="#">
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <div class="form-profile row row-cols-2">
+            <div class="form-signin col">
+                <form method="post" action="#">
+                    <h1 class="h3 mb-3 fw-normal">Sign in</h1>
 
-                <div class="form-floating">
-                    <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username">
-                    <label for="floatingInput">Username</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingInput">Password</label>
-                </div>
+                    <div class="form-floating">
+                        <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username" required="required" pattern="[A-Za-z0-9]{1,30}">
+                        <label for="floatingInput">Username</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required="required" pattern="{1,100}">
+                        <label for="floatingInput">Password</label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" name="signin" type="submit">Sign in</button>
+                </form>
+            </div>
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-            </form>
-        </main>
-<?php
-    }
+            <div class="form-signin col">
+                <form method="post" action="#">
+                    <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+
+                    <div class="form-floating">
+                        <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username" required="required" pattern=".{1,30}">
+                        <label for="floatingInput">Username</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="firstName" name="firstName" class="form-control" id="floatingInput" placeholder="First name" required="required" pattern="[A-Za-z]{1,30}">
+                        <label for="floatingInput">First name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="lastName" name="lastName" class="form-control" id="floatingInput" placeholder="Last name" required="required" pattern="[A-Za-z]{1,30}">
+                        <label for="floatingInput">Last Name</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required="required" pattern="{1,100}">
+                        <label for="floatingInput">Password</label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" name="signup" type="submit">Sign up</button>
+                </form>
+            </div>
+        </div>
+
+
+<?php }
     else if (Auth::isLogged()){ ?>
 
-            <form class="form-edit-profile" method="post" action="#">
+            <form class="form-profile" method="post" action="#">
                 <h1 class="h3 mb-3 fw-normal ">Edit profile</h1>
                 <div class="row row-cols-2 row-cols-sm-1">
                     <!--PLAYER-->
@@ -179,11 +212,16 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
 
                 <!--CONFIG END-->
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" name="update" type="submit">Save settings</button>
+                <div class="buttons row row-cols-2">
+                    <div class="col">
+                        <button class="w-100 btn btn-lg btn-primary sbutton" name="update" type="submit">Save settings</button>
+                    </div>
+                    <div class="col">
+                     <button class="w-100 btn btn-lg btn-primary red sbutton" name="delete" type="submit">Delete account</button>
+                    </div>
+                </div>
+
             </form>
-
-
-
 <?php } ?>
 
 

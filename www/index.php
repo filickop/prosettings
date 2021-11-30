@@ -34,7 +34,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                         <a class="nav-link" href="players.php">Players</a>
                         <?php  if(Auth::isLogged()) { ?>
                             <a class="nav-link" href="account.php">Account</a>
-                            <a class="nav-link" href="?logout=1" >Log out</a>
+                            <a class="nav-link" href="index.php?logout=1" >Log out</a>
                         <?php }
                         else { ?>
                             <a class="nav-link" href="account.php">Log in</a>

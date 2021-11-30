@@ -34,7 +34,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                 <a class="nav-link active" href="#">Players</a>
                 <?php  if(Auth::isLogged()) { ?>
                     <a class="nav-link" href="account.php">Account</a>
-                    <a class="nav-link" href="?logout=1" >Log out</a>
+                    <a class="nav-link" href="index.php?logout=1" >Log out</a>
                 <?php }
                 else { ?>
                     <a class="nav-link" href="account.php">Log in</a>
@@ -54,19 +54,18 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                 <th>Sensivity</th>
                 <th>Mouse</th>
             </tr>
+            <?php
+            foreach($storage->getTable() as $row) {
+            ?>
             <tr>
-                <td>NaVi</td>
-                <td>s1mple</td>
-                <td>400</td>
-                <td>3.09</td>
-                <td>Logitech G PRO Superlight</td>
-            </tr>
-            <tr>
-                <td>NaVi</td>
-                <td>electronic</td>
-                <td>400</td>
-                <td>2.20</td>
-                <td>Logitech G PRO Superlight</td>
+                <td><?php echo $row["team"]?></td>
+                <td><?php echo $row["username"]?></td>
+                <td><?php echo $row["dpi"]?></td>
+                <td><?php echo $row["sensitivity"]?></td>
+                <td><?php echo $row["mouse"]?></td>
+                <?php
+            }
+            ?>
             </tr>
         </table>
 

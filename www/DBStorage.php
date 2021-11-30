@@ -33,13 +33,39 @@ class DBStorage
         return false;
     }
     public function updateUser($username, $firstName,  $lastName, $team, $cpu, $gpu, $ram, $monitor, $mouse, $keyboard, $headset, $mousepad, $dpi, $sensitivity, $crosshair, $viewmodel) {
+
+        if(empty($dpi)) {
+            $dpi = 0;
+        }
+        if(empty($sensitivity)) {
+            $sensitivity = 0;
+        }
         $sql = "UPDATE users SET firstName = '".$firstName."', lastName = '".$lastName."', team = '".$team."', cpu = '".$cpu."', gpu = '".$gpu."', ram = '".$ram."', monitor = '".$monitor."', mouse = '".$mouse."', keyboard = '".$keyboard."', headset = '".$headset."', mousepad = '".$mousepad."', dpi = '".$dpi."', sensitivity = '".$sensitivity."', crosshair = '".$crosshair."', viewmodel = '".$viewmodel."' where username = '".$username."' ";
 
         $res = $this->conn->prepare($sql);
         $res->execute();
     }
+    public function deleteUser($username) {
+        $sql = "DELETE FROM users WHERE username = '".$username."'";
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+        Auth::logout();
+    }
+    public function createUser($username, $firstName, $lastName, $password) {
+        if($this->readTable($username)['username'] == $username) {
+            echo "rovnakyuser";
+            return false;
+        } else {
+            $sql = "INSERT INTO users (username, firstName, lastName, password) VALUES(?,?,?,?)";
+            $res = $this->conn->prepare($sql);
+            $res->execute([$username, $firstName, $lastName, $password]);
+            echo "novy";
+            return true;
+        }
+
+    }
     public function readTable($username) {
-        $sql = "SELECT * FROM users where username = '".$username."'";
+        $sql = "SELECT * FROM users WHERE username = '".$username."'";
         $res = $this->conn->query($sql);
         $res->fetchAll();
         $res->execute();
@@ -49,6 +75,15 @@ class DBStorage
             }
 
         }
-        return "";
+        $arr["username"] = "";
+        return $arr;
     }
+    public function getTable() {
+        $sql = "SELECT * FROM users";
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+        return $res;
+    }
+
 }
