@@ -92,7 +92,7 @@ tr:nth-child(even) {
     z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin input[type="username"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
@@ -106,3 +106,14 @@ tr:nth-child(even) {
 
 
 /*LOGIN PAGE END*/
+
+/*EDIT DATA*/
+.form-editdata {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+
+/*EDIT DATA END*/
