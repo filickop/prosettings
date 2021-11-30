@@ -24,7 +24,6 @@ class DBStorage
         $res = $this->conn->query($sql);
         $res->fetchAll();
         $res->execute();
-        //print_r($res);
         foreach($res as $row) {
             if(isset($row) && $row["password"] == $password) {
                 return true;
@@ -32,5 +31,24 @@ class DBStorage
 
         }
         return false;
+    }
+    public function updateUser($username, $firstName,  $lastName, $team, $cpu, $gpu, $ram, $monitor, $mouse, $keyboard, $headset, $mousepad, $dpi, $sensitivity, $crosshair, $viewmodel) {
+        $sql = "UPDATE users SET firstName = '".$firstName."', lastName = '".$lastName."', team = '".$team."', cpu = '".$cpu."', gpu = '".$gpu."', ram = '".$ram."', monitor = '".$monitor."', mouse = '".$mouse."', keyboard = '".$keyboard."', headset = '".$headset."', mousepad = '".$mousepad."', dpi = '".$dpi."', sensitivity = '".$sensitivity."', crosshair = '".$crosshair."', viewmodel = '".$viewmodel."' where username = '".$username."' ";
+
+        $res = $this->conn->prepare($sql);
+        $res->execute();
+    }
+    public function readTable($username) {
+        $sql = "SELECT * FROM users where username = '".$username."'";
+        $res = $this->conn->query($sql);
+        $res->fetchAll();
+        $res->execute();
+        foreach($res as $row) {
+            if(isset($row)) {
+                return $row;
+            }
+
+        }
+        return "";
     }
 }

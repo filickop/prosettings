@@ -1,3 +1,17 @@
+<?php
+
+require "DBStorage.php";
+require "Auth.php";
+session_start();
+
+$auth = new Auth();
+$storage = new DBStorage();
+
+if(isset($_GET['logout']) && $_GET['logout'] == '1') {
+    Auth::logout();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +24,22 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img src="images/csgologo.png" alt="" class="logomenu"></a>
+        <a class="navbar-brand" href="index.php"><img src="images/csgologo.png" alt="" class="logomenu"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link" aria-current="page" href="index.php">Home</a>
                 <a class="nav-link active" href="#">Players</a>
-                <a class="nav-link" href="account.php">Account</a>
+                <?php  if(Auth::isLogged()) { ?>
+                    <a class="nav-link" href="account.php">Account</a>
+                    <a class="nav-link" href="?logout=1" >Log out</a>
+                <?php }
+                else { ?>
+                    <a class="nav-link" href="account.php">Log in</a>
+                <?php }
+                ?>
             </div>
         </div>
     </div>

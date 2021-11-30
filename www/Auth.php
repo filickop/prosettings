@@ -2,24 +2,24 @@
 
 class Auth
 {
-    public static function login($name)
+    public static function login($username)
     {
-        $_SESSION['name'] = $name;
+        $_SESSION['username'] = $username;
     }
 
     public static function logout()
     {
-        unset( $_SESSION['name']);
+        unset( $_SESSION['username']);
     }
 
     public static function isLogged()
     {
-        return isset( $_SESSION['name']);
+        return isset( $_SESSION['username']);
     }
 
-    public static function getName()
+    public static function getUser()
     {
-        return (Auth::isLogged() ? $_SESSION['name'] : "Anonym");
+        return (Auth::isLogged() ? $_SESSION['username'] : "Anonym");
     }
 }
 ?>
