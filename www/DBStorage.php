@@ -53,13 +53,11 @@ class DBStorage
     }
     public function createUser($username, $firstName, $lastName, $password) {
         if($this->readTable($username)['username'] == $username) {
-            echo "rovnakyuser";
             return false;
         } else {
             $sql = "INSERT INTO users (username, firstName, lastName, password) VALUES(?,?,?,?)";
             $res = $this->conn->prepare($sql);
             $res->execute([$username, $firstName, $lastName, $password]);
-            echo "novy";
             return true;
         }
 

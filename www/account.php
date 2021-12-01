@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PROsettings</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="bootstrap.js"></script>
+    <script src="script.js"></script>
+</head>
 <?php
 
 require "DBStorage.php";
@@ -10,15 +21,22 @@ $storage = new DBStorage();
 if(isset($_POST["signin"])) {
     if($storage->login($_POST["username"], $_POST["password"])) {
         Auth::login($_POST["username"]);
-    } else {
-        echo "nemame";
+    } else { ?>
+        <script>
+            sendWarning("Wrong username or password");
+        </script>
+<?php
     }
 }
 if(isset($_POST["signup"])) {
     if($storage->createUser($_POST["username"],$_POST["firstName"], $_POST["lastName"], $_POST["password"])) {
         Auth::login($_POST["username"]);
     } else {
-        echo "nemame";
+        ?>
+        <script>
+            sendWarning("User with this username already exists");
+        </script>
+        <?php
     }
 }
 if(isset($_POST["update"])) {
@@ -34,17 +52,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>PROsettings</title>
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
 
-    <script src="bootstrap.js"></script>
-    <script src="script.js"></script>
-</head>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -204,11 +212,11 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                             <label for="floatingInput">Sensitivity</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" name="crosshair" class="form-control" id="floatingInput" placeholder="crosshair" required="required" pattern="{0,500}" title="pattern={0,500}" value="<?php echo $storage->readTable(Auth::getUser())["crosshair"]?>">
+                            <input type="text" name="crosshair" class="form-control" id="floatingInput" placeholder="crosshair" pattern=".{0,500}" value="<?php echo $storage->readTable(Auth::getUser())["crosshair"]?>">
                             <label for="floatingInput">Crosshair</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" name="viewmodel" class="form-control" id="floatingInput" placeholder="viewmodel" required="required" pattern="{0,500}" title="pattern={0,500}" value="<?php echo $storage->readTable(Auth::getUser())["viewmodel"]?>">
+                            <input type="text" name="viewmodel" class="form-control" id="floatingInput" placeholder="viewmodel" pattern=".{0,500}" value="<?php echo $storage->readTable(Auth::getUser())["viewmodel"]?>">
                             <label for="floatingInput">Viewmodel</label>
                         </div>
                     </div>
