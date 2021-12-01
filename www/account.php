@@ -41,6 +41,9 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+
+    <script src="bootstrap.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -56,7 +59,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                 <a class="nav-link" href="players.php">Players</a>
                 <?php  if(Auth::isLogged()) { ?>
                     <a class="nav-link active" href="">Account</a>
-                    <a class="nav-link" href="index.php?logout=1" >Log out</a>
+                    <a class="nav-link" href="index.php?logout=1">Log out</a>
                 <?php }
                     else { ?>
                         <a class="nav-link active" href="">Log in</a>
@@ -77,11 +80,11 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                     <h1 class="h3 mb-3 fw-normal">Sign in</h1>
 
                     <div class="form-floating">
-                        <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username" required="required" pattern="[A-Za-z0-9]{1,30}">
+                        <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username" required="required" pattern=".{1,30}" title="{1,30}">
                         <label for="floatingInput">Username</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required="required" pattern="{1,100}">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required="required" pattern=".{1,100}" title="pattern={1,100}">
                         <label for="floatingInput">Password</label>
                     </div>
                     <button class="w-100 btn btn-lg btn-primary" name="signin" type="submit">Sign in</button>
@@ -93,20 +96,20 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                     <h1 class="h3 mb-3 fw-normal">Sign up</h1>
 
                     <div class="form-floating">
-                        <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username" required="required" pattern=".{1,30}">
+                        <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username" required="required" pattern=".{1,30}" title="pattern={1,30}">
                         <label for="floatingInput">Username</label>
                     </div>
                     <div class="form-floating">
-                        <input type="firstName" name="firstName" class="form-control" id="floatingInput" placeholder="First name" required="required" pattern="[A-Za-z]{1,30}">
+                        <input type="firstName" name="firstName" class="form-control" id="floatingInput" placeholder="First name" required="required" pattern="[A-Za-z]{1,30}" title="pattern=[A-Za-z]{1,30}">
                         <label for="floatingInput">First name</label>
                     </div>
                     <div class="form-floating">
-                        <input type="lastName" name="lastName" class="form-control" id="floatingInput" placeholder="Last name" required="required" pattern="[A-Za-z]{1,30}">
+                        <input type="lastName" name="lastName" class="form-control" id="floatingInput" placeholder="Last name" required="required" pattern="[A-Za-z]{1,30}" title="pattern=[A-Za-z]{1,30}">
                         <label for="floatingInput">Last Name</label>
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required="required" pattern="{1,100}">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required="required" pattern=".{1,100}" title="pattern={1,100}">
                         <label for="floatingInput">Password</label>
                     </div>
                     <button class="w-100 btn btn-lg btn-primary" name="signup" type="submit">Sign up</button>
@@ -201,11 +204,11 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                             <label for="floatingInput">Sensitivity</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" name="crosshair" class="form-control" id="floatingInput" placeholder="crosshair" value="<?php echo $storage->readTable(Auth::getUser())["crosshair"]?>">
+                            <input type="text" name="crosshair" class="form-control" id="floatingInput" placeholder="crosshair" required="required" pattern="{0,500}" title="pattern={0,500}" value="<?php echo $storage->readTable(Auth::getUser())["crosshair"]?>">
                             <label for="floatingInput">Crosshair</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" name="viewmodel" class="form-control" id="floatingInput" placeholder="viewmodel" value="<?php echo $storage->readTable(Auth::getUser())["viewmodel"]?>">
+                            <input type="text" name="viewmodel" class="form-control" id="floatingInput" placeholder="viewmodel" required="required" pattern="{0,500}" title="pattern={0,500}" value="<?php echo $storage->readTable(Auth::getUser())["viewmodel"]?>">
                             <label for="floatingInput">Viewmodel</label>
                         </div>
                     </div>
@@ -225,7 +228,6 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
 <?php } ?>
 
 
-<script src="bootstrap.js"></script>
 </body>
 
 </html>

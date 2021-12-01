@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PROsettings</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="bootstrap.js"></script>
+    <script src="script.js"></script>
+
+</head>
+
+
 <?php
 
 require "DBStorage.php";
@@ -12,14 +26,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>PROsettings</title>
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -45,6 +52,112 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
     </div>
 </nav>
 
+<?php
+    if (isset($_POST["open"])) { ?>
+
+    <div class="form-profile">
+        <div class="row row-cols-2 row-cols-sm-1">
+            <!--PLAYER-->
+            <div class="form-editdata col">
+                <h3 class="h4 mb-3 fw-normal">Player</h3>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["username"]?></p>
+                    <label for="floatingInput">Username:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["team"]?></p>
+                    <label for="floatingInput">Team:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["firstName"]?></p>
+                    <label for="floatingInput">First name:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["lastName"]?></p>
+                    <label for="floatingInput">Last name:</label>
+                </div>
+            </div>
+
+        <!--PLAYER END-->
+
+
+        <!--COMPUTER-->
+
+
+            <div class="form-editdata col">
+                <h3 class="h4 mb-3 fw-normal">Computer</h3>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["cpu"]?></p>
+                    <label for="floatingInput">CPU:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["gpu"]?></p>
+                    <label for="floatingInput">GPU:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["ram"]?></p>
+                    <label for="floatingInput">ram:</label>
+                </div>
+            </div>
+        </div>
+        <!--COMPUTER END-->
+
+        <!--PERIPHERALS-->
+        <div class="row row-cols-2 row-cols-sm-1">
+
+            <div class="form-editdata col">
+                <h3 class="h4 mb-3 fw-normal">Peripherals</h3>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["monitor"]?></p>
+                    <label for="floatingInput">Monitor:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["mouse"]?></p>
+                    <label for="floatingInput">Mouse:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["keyboard"]?></p>
+                    <label for="floatingInput">Keyboard:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["headset"]?></p>
+                    <label for="floatingInput">Headset:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["mousepad"]?></p>
+                    <label for="floatingInput">Mouse pad:</label>
+                </div>
+            </div>
+
+        <!--PERIPHERALS END-->
+
+            <!--CONFIG-->
+            <div class="form-editdata col">
+                <h3 class="h4 mb-3 fw-normal">Peripherals</h3>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["dpi"]?></p>
+                    <label for="floatingInput">DPI:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["sensitivity"]?></p>
+                    <label for="floatingInput">Sensitivity:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["crosshair"]?></p>
+                    <label for="floatingInput">Crosshair:</label>
+                </div>
+                <div class="form-floating">
+                    <p class="form-control" ><?php echo $storage->readTable($_POST["open"])["viewmodel"]?></p>
+                    <label for="floatingInput">Viewmodel:</label>
+                </div>
+            </div>
+        </div>
+        <!--CONFIG END-->
+    </div>
+
+    <?php
+    }
+    ?>
     <div class="content">
         <table class="playerTable">
             <tr>
@@ -53,24 +166,46 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                 <th>DPI</th>
                 <th>Sensivity</th>
                 <th>Mouse</th>
+                <th></th>
             </tr>
             <?php
             foreach($storage->getTable() as $row) {
             ?>
-            <tr>
-                <td><?php echo $row["team"]?></td>
-                <td><?php echo $row["username"]?></td>
-                <td><?php echo $row["dpi"]?></td>
-                <td><?php echo $row["sensitivity"]?></td>
-                <td><?php echo $row["mouse"]?></td>
-                <?php
+                <tr >
+                    <td><?php echo $row["team"]?></td>
+                    <td><?php echo $row["username"]?></td>
+                    <td><?php echo $row["dpi"]?></td>
+                    <td><?php echo $row["sensitivity"]?></td>
+                    <td><?php echo $row["mouse"]?></td>
+                    <td><form method="post"><button type="submit" name="open" value="<?php echo $row["username"]?>"  class="btn btn-primary tablebtn">Open</button></form></td>
+                </tr>
+           <?php
             }
             ?>
-            </tr>
-        </table>
 
+        </table>
     </div>
-<script src="bootstrap.js"></script>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 </html>

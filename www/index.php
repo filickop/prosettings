@@ -19,6 +19,8 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 
+    <script src="bootstrap.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -53,7 +55,6 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
 
 
     </div>
-    <script src="bootstrap.js"></script>
 </body>
 
 </html>
