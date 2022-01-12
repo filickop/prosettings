@@ -1,3 +1,6 @@
+<script src="bootstrap.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="script.js"></script>
 <?php
     require "DBStorage.php";
     require "Auth.php";
@@ -28,7 +31,7 @@
                         <td><?php echo $row["dpi"]?></td>
                         <td><?php echo $row["sensitivity"]?></td>
                         <td><?php echo $row["mouse"]?></td>
-                        <td><form method="post"><button type="submit" name="open" value="<?php echo $row["username"]?>" onclick="loadPlayer()" class="btn btn-primary tablebtn">Open</button></form></td>
+                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn">Open</button></td>
                     </tr>
                <?php
                     }
@@ -58,7 +61,7 @@
                         <td><?php echo $row["dpi"]?></td>
                         <td><?php echo $row["sensitivity"]?></td>
                         <td><?php echo $row["mouse"]?></td>
-                        <td><form method="post"><button type="submit" name="open" value="<?php echo $row["username"]?>" onclick="loadPlayer()" class="btn btn-primary tablebtn">Open</button></form></td>
+                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn">Open</button></td>
                     </tr>
             <?php
             }

@@ -141,3 +141,37 @@ tr:nth-child(even) {
     margin-bottom: 5px;
 }
 /*EDIT DATA END*/
+
+/*POPUP*/
+
+#bg-popup {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.content-popup{
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    border-radius: 5px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+#close-popup {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+/*END POPUP*/
