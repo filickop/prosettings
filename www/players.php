@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
-
 </head>
 
 
@@ -159,7 +159,14 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
     }
     ?>
     <div class="content">
-        <table class="playerTable">
+        <div class="form-floating">
+            <input type="text" name="search" class="form-control" id="floatingInput" placeholder="ram" value="">
+            <label for="floatingInput">Search by Name</label>
+        </div>
+        <!--<table class="playerTable" id="tablePlayers">
+
+        </table>-->
+        <table class="playerTable" id="tablePlayers">
             <tr>
                 <th>Team</th>
                 <th>Player</th>
@@ -170,16 +177,16 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
             </tr>
             <?php
             foreach($storage->getTable() as $row) {
-            ?>
-                <tr >
-                    <td><?php echo $row["team"]?></td>
-                    <td><?php echo $row["username"]?></td>
-                    <td><?php echo $row["dpi"]?></td>
-                    <td><?php echo $row["sensitivity"]?></td>
-                    <td><?php echo $row["mouse"]?></td>
-                    <td><form method="post"><button type="submit" name="open" value="<?php echo $row["username"]?>"  class="btn btn-primary tablebtn">Open</button></form></td>
-                </tr>
-           <?php
+                    ?>
+                    <tr >
+                        <td><?php echo $row["team"]?></td>
+                        <td><?php echo $row["username"]?></td>
+                        <td><?php echo $row["dpi"]?></td>
+                        <td><?php echo $row["sensitivity"]?></td>
+                        <td><?php echo $row["mouse"]?></td>
+                        <td><form method="post"><button type="submit" name="open" value="<?php echo $row["username"]?>" onclick="loadPlayer()" class="btn btn-primary tablebtn">Open</button></form></td>
+                    </tr>
+                    <?php
             }
             ?>
 
