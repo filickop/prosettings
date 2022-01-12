@@ -55,7 +55,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
 <div id="playerInfo"></div>
     <div class="content">
         <div class="form-floating">
-            <input type="text" name="search" class="form-control" id="floatingInput" placeholder="ram" value="">
+            <input type="text" name="search" class="form-control search" id="floatingInput" placeholder="ram" value="">
             <label for="floatingInput">Search by Name</label>
         </div>
         <!--<table class="playerTable" id="tablePlayers">
@@ -79,7 +79,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                         <td><?php echo $row["dpi"]?></td>
                         <td><?php echo $row["sensitivity"]?></td>
                         <td><?php echo $row["mouse"]?></td>
-                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn">Open</button></td>
+                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn openPlayer">Open</button></td>
                     </tr>
                     <?php
             }

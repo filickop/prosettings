@@ -31,7 +31,7 @@
                         <td><?php echo $row["dpi"]?></td>
                         <td><?php echo $row["sensitivity"]?></td>
                         <td><?php echo $row["mouse"]?></td>
-                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn">Open</button></td>
+                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn openPlayer">Open</button></td>
                     </tr>
                <?php
                     }
@@ -61,7 +61,7 @@
                         <td><?php echo $row["dpi"]?></td>
                         <td><?php echo $row["sensitivity"]?></td>
                         <td><?php echo $row["mouse"]?></td>
-                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn">Open</button></td>
+                        <td><button name="open" value="<?php echo $row["username"]?>" class="btn btn-primary tablebtn openPlayer">Open</button></td>
                     </tr>
             <?php
             }

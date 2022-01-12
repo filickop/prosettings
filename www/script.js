@@ -4,8 +4,8 @@ function sendWarning(warning) {
 
 $(document).ready(function () {
 
-    $("input").keyup(function () {
-        var name = $("input").val();
+    $(".search").keyup(function () {
+        var name = $(".search").val();
         $.post("playerTable.php", {
             playerName: name
         }, function (data, status) {
@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     
-    $("button").click(function () {
+    $(".openPlayer").click(function () {
         var name = $(this).val();
         $.post("playerInfo.php", {
             playerName: name
