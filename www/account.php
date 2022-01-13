@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </head>
 <?php
@@ -117,10 +118,20 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1') {
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required="required" pattern=".{1,100}" title="pattern={1,100}">
+                        <input type="password" name="password" class="form-control pass" id="floatingPassword" placeholder="Password" required="required" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$" title="pattern=[A-Za-z0-9]{8,30}">
                         <label for="floatingInput">Password</label>
                     </div>
-                    <button class="w-100 btn btn-lg btn-primary" name="signup" type="submit">Sign up</button>
+                    <div class="form-floating">
+                        <input type="password" name="cpassword" class="form-control confirm-pass" id="floatingPassword" placeholder="Confirm Password" required="required" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$" title="pattern=[A-Za-z0-9]{8,30}">
+                        <label for="floatingInput">Confirm Password</label>
+                    </div>
+                    <div class="indicator">
+                        <span class="weak"></span>
+                        <span class="medium"></span>
+                        <span class="strong"></span>
+                    </div>
+                    <div class="weak-pass">Your password is too weak!</div>
+                    <button class="w-100 btn btn-lg btn-primary signup" name="signup" type="submit">Sign up</button>
                 </form>
             </div>
         </div>
